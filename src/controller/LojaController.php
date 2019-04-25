@@ -24,9 +24,7 @@ class LojaController{
 
         if ( $this->hasFiltersLogin($queryParams) ) {
             $resultado = $this->lojaDao->getLojaQueryLogin($queryParams);
-            $this->response->withHeader('Access-Control-Allow-Origin', 'https://lubeasy.herokuapp.com')
-                ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-                ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+
             return resultObject($resultado, $this->response);
             
         }elseif( $this->hasFiltersCategoria($queryParams) ){

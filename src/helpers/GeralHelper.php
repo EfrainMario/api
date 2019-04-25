@@ -54,7 +54,8 @@ function resultObject($resultado, $response){
     if ( $resultado != null ) {
         $clienteObject = $resultado[0];
 
-        return $response->withJson($clienteObject, 200);
+        return $response->withHeader('Access-Control-Allow-Origin', 'https://lubeasy.herokuapp.com')->withJson($clienteObject, 200);
+
     } else {
         return $response->withStatus(404);
     }
