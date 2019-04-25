@@ -11,7 +11,6 @@ use Slim\Http\UploadedFile;
 $app->get('/lojas', function (Request $request, Response $response, array $args) {
 
     $lojaController = new LojaController($request, $response, $args);
-    $response->withHeader('Access-Control-Allow-Origin', 'https://lubeasy.herokuapp.com');
     return $lojaController->getClientes();
 
 });
