@@ -22,12 +22,7 @@ $app->get('/lojas/{id:[0-9]+}', function (Request $request, Response $response, 
     if ($resultado == null) {
         return $response->withStatus(204)->write("Esta loja não existe.");
     }
-    //$this->response->withHeader("Access-Control-Allow-Origin", '*');//$this->request->getHeader("Origin"));
-    /*$this->response->withHeader("Access-Control-Allow-Credentials", "true");
-    $this->response->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-    $this->response->withHeader("Access-Control-Max-Age", "3600");
-    $this->response->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");*/
-    //return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')->withJson($resultado[0], 200);
+
     return $response->withJson($resultado[0], 200);
 });
 //Listar lojas com categoria...
