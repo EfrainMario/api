@@ -32,20 +32,20 @@ class ConexaoBD
     //Esse bloco aqui é para comentar, antes de enviar para o servidor
     public function __construct()
     {
-        $this->database = new \Medoo\Medoo([
+        /*$this->database = new \Medoo\Medoo([
             'database_type' => 'mysql',
             'database_name' => 'vectisfood',
             'server' => 'localhost',
             'username' => 'root',
             'password' => '',
-            'charset' => 'utf8']);
-        /*$this->database = new \Medoo\Medoo([
+            'charset' => 'utf8']);*/
+        $this->database = new \Medoo\Medoo([
             'database_type' => 'mysql',
             'database_name' => 'lnYToa7J9Y',
             'server' => 'remotemysql.com',
             'username' => 'lnYToa7J9Y',
             'password' => 'z1DplIjphX',
-            'charset' => 'utf8']);*/
+            'charset' => 'utf8']);
     }
 
 }
