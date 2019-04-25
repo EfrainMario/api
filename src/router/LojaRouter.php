@@ -22,7 +22,11 @@ $app->get('/lojas/{id:[0-9]+}', function (Request $request, Response $response, 
     if ($resultado == null) {
         return $response->withStatus(204)->write("Esta loja não existe.");
     }
-
+    $response->withHeader("Access-Control-Allow-Origin", $request->getHeader("Origin"));
+    $response->withHeader("Access-Control-Allow-Credentials", "true");
+    $response->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+    $response->withHeader("Access-Control-Max-Age", "3600");
+    $response->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
     return $response->withJson($resultado[0], 200);
 });
 //Listar lojas com categoria...
