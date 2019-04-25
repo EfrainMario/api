@@ -38,12 +38,12 @@ class LojaController{
 
         }elseif( $this->hasFiltersLocation($queryParams) ){
             $resultado = $this->lojaDao->getLojaQueryLocation($queryParams);
-            $this->response->withHeader('Access-Control-Allow-Origin', '*');
+            //$this->response->withHeader('Access-Control-Allow-Origin', '*');
             return resultArray($resultado, $this->response);
 
         }else {
             $resultado = $this->lojaDao->pegarTodasAsLojas();
-            $this->response->withHeader('Access-Control-Allow-Origin', '*');
+            //$this->response->withHeader('Access-Control-Allow-Origin', '*');
             return resultArray($resultado, $this->response);
         }
 
