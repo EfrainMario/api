@@ -43,6 +43,8 @@ class PromocaoDao
     //POST
     function criarPromocao($json, $imagem)
     {
+        date_default_timezone_set( "Africa/Luanda");
+        $json['dataDeCriacao'] = date('Y-m-d H:i:s');
         $imagem = uploadedImage($imagem, 'promocao');
 
         //inserir
@@ -56,7 +58,8 @@ class PromocaoDao
                     "imagem" => $json['imagem'],
                     "dataTermino" =>$json['dataTermino'],
                     "descricao" =>$json['descricao'],
-                    "tempoDePreparo" =>$json['tempoDePreparo']
+                    "tempoDePreparo" =>$json['tempoDePreparo'],
+                    "dataDeCriacao"=>$json['dataDeCriacao'],
                 ]);
         }
         return $insert;

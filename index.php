@@ -23,6 +23,7 @@ require __DIR__ . '/src/router/clienteLugaresRouter.php';
 
 // Register routes
 require __DIR__ . '/src/router/LojaRouter.php';
+require __DIR__ . '/src/router/LojaAvaliacoesRouter.php';
 require __DIR__.'/src/router/LojaPedidosRouter.php';
 
 // Register routes

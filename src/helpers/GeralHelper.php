@@ -5,7 +5,7 @@
  * Date: 25/01/2019
  * Time: 12:07
  */
-$HOST = "http://localhost/www/vectis/api/v1/src/";
+$HOST = "http://localhost/www/vectis/api/loja/v1/src/";
 
 function uploadedImage($imagem, $tipo)
 {
