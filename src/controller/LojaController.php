@@ -25,6 +25,10 @@ class LojaController{
         if ( $this->hasFiltersLogin($queryParams) ) {
             $resultado = $this->lojaDao->getLojaQueryLogin($queryParams);
             $this->response->withHeader("Access-Control-Allow-Origin", $this->request->getHeader("Origin"));
+            $this->response->withHeader("Access-Control-Allow-Credentials", "true");
+            $this->response->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+            $this->response->withHeader("Access-Control-Max-Age", "3600");
+            $this->response->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
             return resultObject($resultado, $this->response);
             
         }elseif( $this->hasFiltersCategoria($queryParams) ){
