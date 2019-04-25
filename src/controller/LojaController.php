@@ -33,7 +33,7 @@ class LojaController{
             
         }elseif( $this->hasFiltersCategoria($queryParams) ){
             $resultado = $this->lojaDao->getLojaQueryCategoria($queryParams);
-            $this->response->withHeader('Access-Control-Allow-Origin', '*');
+            //$this->response->withHeader('Access-Control-Allow-Origin', '*');
             return resultArray($resultado, $this->response);
 
         }elseif( $this->hasFiltersLocation($queryParams) ){

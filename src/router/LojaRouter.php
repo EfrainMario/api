@@ -27,7 +27,7 @@ $app->get('/lojas/{id:[0-9]+}', function (Request $request, Response $response, 
     $this->response->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
     $this->response->withHeader("Access-Control-Max-Age", "3600");
     $this->response->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");*/
-    return $response->withHeader("Access-Control-Allow-Origin", '*')->withJson($resultado[0], 200);
+    return $response->withHeader("Access-Control-Allow-Origin", $request->getHeader('Origin'))->withJson($resultado[0], 200);
 });
 //Listar lojas com categoria...
 $app->get('/lojas/{categria:[a-zA-Z0-9]+}', function (Request $request, Response $response, array $args) {
