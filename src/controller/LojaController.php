@@ -24,18 +24,22 @@ class LojaController{
 
         if ( $this->hasFiltersLogin($queryParams) ) {
             $resultado = $this->lojaDao->getLojaQueryLogin($queryParams);
+            $this->response->withHeader('Access-Control-Allow-Origin', '*');
             return resultObject($resultado, $this->response);
             
         }elseif( $this->hasFiltersCategoria($queryParams) ){
             $resultado = $this->lojaDao->getLojaQueryCategoria($queryParams);
+            $this->response->withHeader('Access-Control-Allow-Origin', '*');
             return resultArray($resultado, $this->response);
 
         }elseif( $this->hasFiltersLocation($queryParams) ){
             $resultado = $this->lojaDao->getLojaQueryLocation($queryParams);
+            $this->response->withHeader('Access-Control-Allow-Origin', '*');
             return resultArray($resultado, $this->response);
 
         }else {
             $resultado = $this->lojaDao->pegarTodasAsLojas();
+            $this->response->withHeader('Access-Control-Allow-Origin', '*');
             return resultArray($resultado, $this->response);
         }
 
