@@ -14,6 +14,13 @@ require __DIR__ . '/vendor/autoload.php';
 
 $app = new \Slim\App();
 date_default_timezone_set( "Africa/Luanda");
+
+header("Access-Control-Allow-Origin: https://lubeasy.herokuapp.com");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Max-Age: 86400");
+header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin");
+
 // Register api
 require __DIR__ . '/src/router/clienteRouter.php';
 
