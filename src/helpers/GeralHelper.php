@@ -53,13 +53,18 @@ function resultObject($resultado, $response){
     //E retorna-o como jsonObject na resposta
     if ( $resultado != null ) {
         $clienteObject = $resultado[0];
-
-        return $response->withHeader('Access-Control-Allow-Origin', 'https://lubeasy.herokuapp.com')
-                ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-                ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')->withJson($clienteObject, 200);
-
+        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withJson($clienteObject, 200);
     } else {
-        return $response->withStatus(404);
+        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+            ->withHeader("Access-Control-Max-Age", "3600")
+            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+            ->withHeader("Access-Control-Allow-Credentials", 'true')->withStatus(404);
     }
 
 
@@ -71,18 +76,38 @@ function resultArray($resultado, $response){
     //E retorna-o como jsonArray na resposta
 
     if ($resultado != null)
-       return $response->withJson($resultado, 200);
+       return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                       ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                       ->withHeader("Access-Control-Max-Age", "3600")
+                       ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                       ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withJson($resultado, 200);
     else
-       return $response->withStatus(204);
+       return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                       ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                       ->withHeader("Access-Control-Max-Age", "3600")
+                       ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                       ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(204);
 }
 
 function checkCountRowPut($resultado, $response){
     //Verifica o resultado com o method rowCout
     //E retorna o codido mais adequado com o verbo
     if( $resultado->rowCount() > 0 ){
-        return $response->withStatus(200);
+        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(200);
     }else{
-        return $response->withStatus(400);
+        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(400);
     }
 
 }
@@ -90,9 +115,19 @@ function checkCountRowPost($resultado, $response){
     //Verifica o resultado com o method rowCout
     //E retorna o codido mais adequado com o verbo
     if( $resultado->rowCount() > 0 ){
-        return $response->withStatus(201);
+        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(201);
     }else{
-        return $response->withStatus(400);
+        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(400);
     }
 
 }

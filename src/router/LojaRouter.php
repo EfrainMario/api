@@ -20,14 +20,20 @@ $app->get('/lojas/{id:[0-9]+}', function (Request $request, Response $response, 
     $id = $args['id'];
     $resultado = $loja->pegarLojaPeloId($id);
     if ($resultado == null) {
-        return $response->withStatus(204)->write("Esta loja não existe.");
+        return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(204)->write("Esta loja não existe.");
     }
-    $response->withHeader("Access-Control-Allow-Origin", $request->getHeader("Origin"));
-    $response->withHeader("Access-Control-Allow-Credentials", "true");
-    $response->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-    $response->withHeader("Access-Control-Max-Age", "3600");
-    $response->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
-    return $response->withJson($resultado[0], 200);
+
+    return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                    ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                    ->withHeader("Access-Control-Max-Age", "3600")
+                    ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                    ->withHeader("Access-Control-Allow-Credentials", 'true')
+                    ->withJson($resultado[0], 200);
 });
 //Listar lojas com categoria...
 $app->get('/lojas/{categria:[a-zA-Z0-9]+}', function (Request $request, Response $response, array $args) {
@@ -35,10 +41,20 @@ $app->get('/lojas/{categria:[a-zA-Z0-9]+}', function (Request $request, Response
     $categoria = $args['categria'];
     $resultado = $loja->pegarTodasAsLojasComACategoria($categoria);
     if ($resultado == null) {
-        return $response->withStatus(204)->write("De momento não existem lojas com esta categoria.");
+        return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(204)->write("De momento não existem lojas com esta categoria.");
     }
 
-    return $response->withJson($resultado, 200);
+    return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                    ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                    ->withHeader("Access-Control-Max-Age", "3600")
+                    ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                    ->withHeader("Access-Control-Allow-Credentials", 'true')
+                    ->withJson($resultado, 200);
 });
 //Criar loja
 $app->post('/lojas', function (Request $request, Response $response, array $args)
@@ -50,13 +66,28 @@ $app->post('/lojas', function (Request $request, Response $response, array $args
         $resultado = $lojaDao->criarLoja($jsonInArray);
 
         if($resultado->rowCount() > 0){
-            return $response->withStatus(201)->write('Parabéns! você criou a sua loja');
+            return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                            ->withHeader("Access-Control-Max-Age", "3600")
+                            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                            ->withHeader("Access-Control-Allow-Credentials", 'true')
+                            ->withStatus(201)->write('Parabéns! você criou a sua loja');
         }else{
-            return $response->withStatus(400)->write('Não foi possível criar a loja. Por favor, verifique se todos os campos estão correctos.');
+            return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                            ->withHeader("Access-Control-Max-Age", "3600")
+                            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                            ->withHeader("Access-Control-Allow-Credentials", 'true')
+                            ->withStatus(400)->write('Não foi possível criar a loja. Por favor, verifique se todos os campos estão correctos.');
         }
 
     }else{
-        return $response->withStatus(400)->write('Um erro desconhecido ocorreu ao criar a loja.');
+        return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(400)->write('Um erro desconhecido ocorreu ao criar a loja.');
     }
 });
 //Actualizar loja com id
@@ -69,13 +100,28 @@ $app->post('/lojas/{id:[0-9]+}/logos', function (Request $request, Response $res
         $id = $args['id'];
         $resultado = $lojaDao->actualizarLogoDaLoja($id,$jsonInArray);
         if($resultado->rowCount() > 0){
-            return $response->withStatus(200)->write('logo actualizado.');
+            return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                            ->withHeader("Access-Control-Max-Age", "3600")
+                            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                            ->withHeader("Access-Control-Allow-Credentials", 'true')
+                            ->withStatus(200)->write('logo actualizado.');
         }else{
-            return $response->withStatus(400)->write('Não foi possivel actualizar o logo.');
+            return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                            ->withHeader("Access-Control-Max-Age", "3600")
+                            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                            ->withHeader("Access-Control-Allow-Credentials", 'true')
+                            ->withStatus(400)->write('Não foi possivel actualizar o logo.');
         }
 
     }else{
-        return $response->withStatus(400)->write('Um erro desconhecido ocorreu ao actualizar o logo.');
+        return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(400)->write('Um erro desconhecido ocorreu ao actualizar o logo.');
     }
 });
 //Actualizar loja com id
@@ -89,12 +135,27 @@ $app->put('/lojas/{id:[0-9]+}', function (Request $request, Response $response, 
         $resultado = $lojaDao->actualizarLoja($id,$jsonInArray);
 
         if($resultado->rowCount() > 0){
-            return $response->withStatus(201)->write('loja actualizada com sucesso.');
+            return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT")
+                            ->withHeader("Access-Control-Max-Age", "3600")
+                            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                            ->withHeader("Access-Control-Allow-Credentials", 'true')
+                            ->withStatus(201)->write('loja actualizada com sucesso.');
         }else{
-            return $response->withStatus(400)->write('Não foi possivel actualizar a loja.');
+            return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT")
+                            ->withHeader("Access-Control-Max-Age", "3600")
+                            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                            ->withHeader("Access-Control-Allow-Credentials", 'true')
+                            ->withStatus(400)->write('Não foi possivel actualizar a loja.');
         }
 
     }else{
-        return $response->withStatus(400)->write('Um erro desconhecido ocorreu ao actualizar a loja.');
+        return $response->withHeader("Access-Control-Allow-Origin", 'https://lubeasy.herokuapp.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(400)->write('Um erro desconhecido ocorreu ao actualizar a loja.');
     }
 });

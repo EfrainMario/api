@@ -24,7 +24,6 @@ class LojaController{
 
         if ( $this->hasFiltersLogin($queryParams) ) {
             $resultado = $this->lojaDao->getLojaQueryLogin($queryParams);
-
             return resultObject($resultado, $this->response);
             
         }elseif( $this->hasFiltersCategoria($queryParams) ){

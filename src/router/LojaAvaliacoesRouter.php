@@ -13,8 +13,18 @@ $app->get('/lojas/{id:[0-9]+}/avaliacoes', function (Request $request, Response 
     $id = $args['id'];
     $resultado = $loja->pegarAvaliacaoMediaDaLoja($id);
     if ($resultado == null) {
-        return $response->withStatus(204)->write("");
+        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                        ->withHeader("Access-Control-Max-Age", "3600")
+                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                        ->withHeader("Access-Control-Allow-Credentials", 'true')
+                        ->withStatus(204)->write("");
     }
 
-    return $response->withJson($resultado, 200);
+    return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
+                    ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                    ->withHeader("Access-Control-Max-Age", "3600")
+                    ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
+                    ->withHeader("Access-Control-Allow-Credentials", 'true')
+                    ->withJson($resultado, 200);
 });
