@@ -13,20 +13,10 @@ $app->get('/produtos', function (Request $request, Response $response, array $ar
     $resultado = $produtoDao->pegarTodosProdutos();
 
     if ($resultado == null) {
-        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                        ->withHeader("Access-Control-Max-Age", "3600")
-                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                        ->withHeader("Access-Control-Allow-Credentials", 'true')
-                        ->withStatus(204)->write("Ainda não existem produtos.");
+        return $response->withStatus(204)->write("Ainda não existem produtos.");
     }
 
-    return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                    ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                    ->withHeader("Access-Control-Max-Age", "3600")
-                    ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                    ->withHeader("Access-Control-Allow-Credentials", 'true')
-                    ->withJson($resultado, 200);
+    return $response->withJson($resultado, 200);
 });
 //Listar Produtos...
 $app->get('/produtos/{id:[0-9]+}', function (Request $request, Response $response, array $args) {
@@ -34,20 +24,10 @@ $app->get('/produtos/{id:[0-9]+}', function (Request $request, Response $respons
     $id = $args['id'];
     $resultado = $produtoDao->pegarProdutoPeloId($id);
     if ($resultado == null) {
-        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                        ->withHeader("Access-Control-Max-Age", "3600")
-                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                        ->withHeader("Access-Control-Allow-Credentials", 'true')
-                        ->withStatus(204)->write("Produto não encontrado.");
+        return $response->withStatus(204)->write("Produto não encontrado.");
     }
 
-    return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                    ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                    ->withHeader("Access-Control-Max-Age", "3600")
-                    ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                    ->withHeader("Access-Control-Allow-Credentials", 'true')
-                    ->withJson($resultado[0], 200);
+    return $response->withJson($resultado[0], 200);
 });
 //Listar produtos com nome...
 $app->get('/produtos/{nome:[a-zA-Z0-9]+}', function (Request $request, Response $response, array $args) {
@@ -55,20 +35,10 @@ $app->get('/produtos/{nome:[a-zA-Z0-9]+}', function (Request $request, Response 
     $nome = $args['nome'];
     $resultado = $produtoDao->pegarProdutosPeloNome($nome);
     if ($resultado == null) {
-        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                        ->withHeader("Access-Control-Max-Age", "3600")
-                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                        ->withHeader("Access-Control-Allow-Credentials", 'true')
-                        ->withStatus(204)->write("De momento não existem produtos com este nome.");
+        return $response->withStatus(204)->write("De momento não existem produtos com este nome.");
     }
 
-    return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                    ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                    ->withHeader("Access-Control-Max-Age", "3600")
-                    ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                    ->withHeader("Access-Control-Allow-Credentials", 'true')
-                    ->withJson($resultado,200);
+    return $response->withJson($resultado,200);
 });
 //Actualizar imagem produtos
 $app->post('/produtos/{id:[0-9]+}/logos', function (Request $request, Response $response, array $args)
@@ -81,27 +51,12 @@ $app->post('/produtos/{id:[0-9]+}/logos', function (Request $request, Response $
         $resultado = $produtoDao->actualizarImagemDoProduto($id,$jsonInArray);
 
         if($resultado->rowCount() > 0){
-            return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                            ->withHeader("Access-Control-Max-Age", "3600")
-                            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                            ->withHeader("Access-Control-Allow-Credentials", 'true')
-                            ->withStatus(201)->write('Imagem adicionada.');
+            return $response->withStatus(201)->write('Imagem adicionada.');
         }else{
-            return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                            ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                            ->withHeader("Access-Control-Max-Age", "3600")
-                            ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                            ->withHeader("Access-Control-Allow-Credentials", 'true')
-                            ->withStatus(400)->write('Erro ao adicionar a imagem.');
+            return $response->withStatus(400)->write('Erro ao adicionar a imagem.');
         }
 
     }else{
-        return $response->withHeader("Access-Control-Allow-Origin", 'http://www.lubeasy.com')
-                        ->withHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-                        ->withHeader("Access-Control-Max-Age", "3600")
-                        ->withHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me")
-                        ->withHeader("Access-Control-Allow-Credentials", 'true')
-                        ->withStatus(500)->write('Um erro desconhecido ocorreu ao criar a loja.');
+        return $response->withStatus(500)->write('Um erro desconhecido ocorreu ao criar a loja.');
     }
 });
