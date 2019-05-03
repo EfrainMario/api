@@ -77,7 +77,6 @@ $app->post('/lojas/{id:[0-9]+}/logos', function (Request $request, Response $res
 //Actualizar loja com id
 $app->put('/lojas/{id:[0-9]+}', function (Request $request, Response $response, array $args){
     $jsonInArray = $request->getParsedBody();
-    var_dump($jsonInArray);
     if($jsonInArray != null)
     {
         $lojaDao = new LojaDao();

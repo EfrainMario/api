@@ -68,7 +68,44 @@ require_once (__DIR__."/../ConexaoBD.php");
 
         //subelemento pedidos da loja
         public function getLojaPedidos($idLoja, $parametros){
-            $resultado = $this->database->select('pedido', "*",
+            $resultado = $this->database->select('pedido', [
+                "[><]lugarcliente" => [ "idLugarCliente" => "id" ],
+                "[><]cliente" => [ "idCliente" => "id" ]
+            ],[
+                "pedido.id",
+                "pedido.idCliente",
+                "pedido.idEntregador",
+                "pedido.itensDoPedido",
+                "pedido.subTotal",
+                "pedido.total",
+                "pedido.observacoes",
+                "pedido.tempoDeEntrega",
+                "pedido.formaDePagamento",
+                "pedido.isAccept",
+                "pedido.isNotAcceptDetail",
+                "pedido.typePedido",
+                "pedido.receptLojaTime",
+                "pedido.deliveryTime",
+                "pedido.clienteTime",
+                "pedido.desconto",
+                "pedido.codPedido",
+                "pedido.idLugarCliente",
+                "pedido.dataDeEmissao",
+                "pedido.isPay",
+                "pedido.payTime",
+                "pedido.wasOpenForLoja",
+                "pedido.isCancelled",
+
+                "lugarcliente.idCliente",
+                "lugarcliente.latitude",
+                "lugarcliente.longitude",
+                "lugarcliente.endereco",
+                "lugarcliente.descricao",
+                "lugarcliente.nome",
+
+                "cliente.nome",
+
+            ],
             $parametros+
             [
                 'idLoja' => $idLoja,
@@ -83,11 +120,46 @@ require_once (__DIR__."/../ConexaoBD.php");
             
             $resultado = $this->database->select('pedido',
                 [
-                    "[><]lugarCliente" => [ "idLugarCliente" => "id" ]
-                ],"*",
+                    "[><]lugarcliente" => [ "idLugarCliente" => "id" ],
+                    "[><]cliente" => [ "idCliente" => "id" ]
+                ],[
+                    "pedido.id",
+                    "pedido.idCliente",
+                    "pedido.idEntregador",
+                    "pedido.itensDoPedido",
+                    "pedido.subTotal",
+                    "pedido.total",
+                    "pedido.observacoes",
+                    "pedido.tempoDeEntrega",
+                    "pedido.formaDePagamento",
+                    "pedido.isAccept",
+                    "pedido.isNotAcceptDetail",
+                    "pedido.typePedido",
+                    "pedido.receptLojaTime",
+                    "pedido.deliveryTime",
+                    "pedido.clienteTime",
+                    "pedido.desconto",
+                    "pedido.codPedido",
+                    "pedido.idLugarCliente",
+                    "pedido.dataDeEmissao",
+                    "pedido.isPay",
+                    "pedido.payTime",
+                    "pedido.wasOpenForLoja",
+                    "pedido.isCancelled",
+
+                    "lugarcliente.idCliente",
+                    "lugarcliente.latitude",
+                    "lugarcliente.longitude",
+                    "lugarcliente.endereco",
+                    "lugarcliente.descricao",
+                    "lugarcliente.nome",
+
+                    "cliente.nome",
+
+                ],
                 [
-                    'id' => $idPedido,
-                    'idLoja' => $idLoja,
+                    'pedido.id' => $idPedido,
+                    'pedido.idLoja' => $idLoja,
                     "ORDER" => [ "id" => "DESC" ],
                 ]);
             return $resultado;
