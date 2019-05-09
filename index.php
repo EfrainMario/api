@@ -15,8 +15,8 @@ require __DIR__ . '/vendor/autoload.php';
 $app = new \Slim\App();
 date_default_timezone_set( "Africa/Luanda");
 
-header("Access-Control-Allow-Origin: https://lubeasy.herokuapp.com");
-//header("Access-Control-Allow-Origin: http://www.lubeasy.com");
+//header("Access-Control-Allow-Origin: https://lubeasy.herokuapp.com");
+header("Access-Control-Allow-Origin: http://www.lubeasy.com");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Max-Age: 86400");
@@ -38,6 +38,7 @@ require __DIR__.'/src/router/LojaPedidosRouter.php';
 require __DIR__ . '/src/router/LojaProdutosRouter.php';
 //require __DIR__ . '/src/router/ProdutosRouter.php';
 
+require __DIR__ . '/src/router/fcmRouter.php';
 // Register routes
 require __DIR__ . '/src/router/PromocaoRouter.php';
 
